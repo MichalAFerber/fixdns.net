@@ -371,8 +371,9 @@ a:hover { text-decoration: underline; }
 /* Footer */
 .site-footer { padding: 24px 0; background: #061a31; color: #c8d4e6; font-size: .9rem; }
 .site-footer a { color: #fff; }
-.footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+.footer-inner { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; text-align: center; }
 .site-footer p { margin: 0; }
+.heart { color: #ff5a6e; }
 
 /* Responsive */
 @media (max-width: 720px) {
