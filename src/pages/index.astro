@@ -2,6 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 
 const calLink = 'https://cal.com/techguywithabeard/';
+const calStandard = 'https://cal.com/techguywithabeard/meet';
+const calRecording = 'https://cal.com/techguywithabeard/meet-recording';
+const calAfterHours = 'https://cal.com/techguywithabeard/meet-after-hours';
 const tgwabLink = 'https://techguywithabeard.com/';
 const email = 'michal@techguywithabeard.com';
 const mailerLiteCert = 'https://michalferber.me/2024-01-21-mailerlite-expert/';
@@ -32,20 +35,22 @@ const mailerLiteCert = 'https://michalferber.me/2024-01-21-mailerlite-expert/';
         <div class="eyebrow-row">
           <span class="eyebrow">DNS help, by the hour, by a real human</span>
           <a class="badge" href={mailerLiteCert} target="_blank" rel="noopener">MailerLite Certified Expert</a>
+          <span class="badge">US East Coast &middot; Native English</span>
         </div>
         <h1>Your DNS is broken. I&rsquo;ll fix it on a Zoom call.</h1>
         <p class="lede">
           DMARC failing? SPF a mess? MailerLite or Mailchimp refusing to verify? New Google &amp; Microsoft email rules dropping your mail into spam? Book a one-hour session and we&rsquo;ll get it sorted together &mdash; usually in well under the hour.
         </p>
         <div class="cta-row">
-          <a class="btn btn-primary" href={calLink} target="_blank" rel="noopener">Book a 1-hour session &mdash; $85</a>
+          <a class="btn btn-primary" href={calStandard} target="_blank" rel="noopener">Book a 1-hour session &mdash; from $85</a>
           <a class="btn btn-ghost" href="#how">See how it works</a>
         </div>
         <ul class="hero-trust" aria-label="What you get">
-          <li><strong>$85</strong> flat per booked hour</li>
+          <li><strong>From $85</strong> per booked hour</li>
           <li><strong>~90%</strong> of issues solved in under an hour</li>
           <li><strong>Zero</strong> passwords required, ever</li>
           <li><strong>MailerLite</strong> Certified Expert</li>
+          <li><strong>US East Coast</strong>, native English</li>
         </ul>
       </div>
     </section>
@@ -120,29 +125,45 @@ const mailerLiteCert = 'https://michalferber.me/2024-01-21-mailerlite-expert/';
     <section id="pricing" class="section">
       <div class="wrap">
         <h2>Pricing</h2>
-        <p class="section-lede">No subscriptions, no retainers, no surprise invoices. You book the hour you need.</p>
-        <div class="pricing-grid">
-          <article class="price-card">
-            <h3>1-hour session</h3>
+        <p class="section-lede">No subscriptions, no retainers, no surprise invoices. Pick the option that fits, book the hour, done.</p>
+        <div class="pricing-grid pricing-grid-3">
+          <article class="price-card price-card-accent">
+            <span class="price-tag">Most common</span>
+            <h3>Meet w/TechGuyWithABeard</h3>
             <p class="price"><span class="dollar">$</span>85</p>
+            <p class="price-sub">1-hour standard session</p>
             <ul>
               <li>Zoom call, screen share or remote control</li>
               <li>Real-time DNS fixes, you watch every step</li>
               <li>Plain-English summary of what we changed</li>
               <li>Stripe payment at booking</li>
             </ul>
-            <a class="btn btn-primary btn-block" href={calLink} target="_blank" rel="noopener">Book now</a>
+            <a class="btn btn-primary btn-block" href={calStandard} target="_blank" rel="noopener">Book standard &mdash; $85</a>
           </article>
-          <article class="price-card price-card-accent">
-            <h3>Add a recording</h3>
-            <p class="price"><span class="dollar">+$</span>10</p>
+          <article class="price-card">
+            <h3>Meet w/TechGuyWithABeard + Recording</h3>
+            <p class="price"><span class="dollar">$</span>95</p>
+            <p class="price-sub">1-hour session, fully recorded</p>
             <ul>
-              <li>Full Zoom recording of the session</li>
+              <li>Everything in the standard session</li>
+              <li>Full Zoom recording of the call</li>
               <li>Private download link, yours to keep</li>
-              <li>Re-watch any change at any time</li>
-              <li>Great if you have to explain it later</li>
+              <li>Re-watch any change, any time</li>
             </ul>
-            <a class="btn btn-ghost btn-block" href={calLink} target="_blank" rel="noopener">Add at booking</a>
+            <a class="btn btn-ghost btn-block" href={calRecording} target="_blank" rel="noopener">Book + recording &mdash; $95</a>
+          </article>
+          <article class="price-card">
+            <span class="price-tag price-tag-warn">Urgent / off-hours</span>
+            <h3>Meet w/TechGuyWithABeard (After Hours)</h3>
+            <p class="price"><span class="dollar">$</span>145</p>
+            <p class="price-sub">1-hour emergency / evening / weekend</p>
+            <ul>
+              <li>Same session, outside normal hours</li>
+              <li>For mail outages and urgent fixes</li>
+              <li>You watch every change, same as always</li>
+              <li>Stripe payment at booking</li>
+            </ul>
+            <a class="btn btn-ghost btn-block" href={calAfterHours} target="_blank" rel="noopener">Book after hours &mdash; $145</a>
           </article>
         </div>
         <p class="fineprint">~90% of issues are solved in a single hour. If a job genuinely needs more time, we book another hour &mdash; never a surprise charge.</p>
@@ -233,6 +254,9 @@ const mailerLiteCert = 'https://michalferber.me/2024-01-21-mailerlite-expert/';
             I&rsquo;m <strong>Michal Ferber</strong> &mdash; better known online as <a href={tgwabLink} target="_blank" rel="noopener">TechGuyWithABeard</a>. I&rsquo;m retired, I don&rsquo;t take on full-time clients, I don&rsquo;t run a marketing funnel, I don&rsquo;t have a team. I take a small number of DNS calls a week because, after a long career, troubleshooting DNS is the part I still actually enjoy.
           </p>
           <p>
+            I&rsquo;m based on the <strong>US East Coast</strong> and English is my first language. When we hop on Zoom you get a clear, plain-spoken conversation with the person who&rsquo;ll actually do the work &mdash; no offshore call center, no script read off a sheet, no language barrier.
+          </p>
+          <p>
             That means when you book me you get a one-on-one session focused entirely on your problem &mdash; not an assistant, not a ticket queue, not a script. I&rsquo;ve spent years on DMARC, SPF, DKIM, mail routing, registrar migrations, and every quirky newsletter platform in the wild. I&rsquo;m a <a href={mailerLiteCert} target="_blank" rel="noopener"><strong>MailerLite Certified Expert</strong></a> &mdash; seven certifications through MailerLite Academy covering deliverability, sender authentication, and the rest &mdash; fluent in the broader field, and if it touches DNS I&rsquo;ve probably fixed it before.
           </p>
           <p>
@@ -241,6 +265,7 @@ const mailerLiteCert = 'https://michalferber.me/2024-01-21-mailerlite-expert/';
         </div>
         <ul class="trust-list">
           <li><strong>MailerLite Certified Expert</strong> &mdash; <a href={mailerLiteCert} target="_blank" rel="noopener">see credential</a></li>
+          <li><strong>US East Coast</strong>, native English speaker</li>
           <li><strong>Decades</strong> hands-on with DNS, email, and registrars</li>
           <li><strong>You stay in control</strong> &mdash; I never log in as you</li>
           <li><strong>Plain English</strong>, not jargon dumps</li>
@@ -279,7 +304,15 @@ const mailerLiteCert = 'https://michalferber.me/2024-01-21-mailerlite-expert/';
           </details>
           <details>
             <summary>Do you record the session?</summary>
-            <p>Only if you ask. For an extra $10 I&rsquo;ll record the Zoom call and send you a private download link so you have a permanent reference of every change we made and why.</p>
+            <p>Only if you book the recording option. For <strong>$95</strong> (instead of the $85 standard) I record the Zoom call and send you a private download link so you have a permanent reference of every change we made and why.</p>
+          </details>
+          <details>
+            <summary>Where are you based and what language do we work in?</summary>
+            <p>I&rsquo;m based on the <strong>US East Coast</strong> and English is my first language. Every call is one-on-one with me &mdash; no offshore call center, no script read off a sheet, no language barrier. Worldwide clients welcome; we just have to find a Zoom slot in your daylight.</p>
+          </details>
+          <details>
+            <summary>Got an emergency outside business hours?</summary>
+            <p>Yes &mdash; book the <strong>After Hours</strong> option ($145) for evenings, weekends, and urgent mail-down situations. Same session, same approach, just outside normal hours.</p>
           </details>
           <details>
             <summary>What if it takes longer than an hour?</summary>
@@ -306,11 +339,6 @@ const mailerLiteCert = 'https://michalferber.me/2024-01-21-mailerlite-expert/';
   <footer class="site-footer">
     <div class="wrap footer-inner">
       <p>&copy; 2026 FixDNS.net &mdash; Michal Ferber, aka <a href={tgwabLink} target="_blank" rel="noopener">TechGuyWithABeard</a>.</p>
-      <p>
-        <a href={`mailto:${email}`}>{email}</a>
-        &nbsp;&middot;&nbsp;
-        <a href={calLink} target="_blank" rel="noopener">Book a session</a>
-      </p>
     </div>
   </footer>
 </Layout>

@@ -33,6 +33,8 @@ const {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
 
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://cal.com" />
     <link rel="dns-prefetch" href="https://cal.com" />
 
@@ -48,6 +50,12 @@ const {
           email: 'michal@techguywithabeard.com',
           sameAs: ['https://techguywithabeard.com/'],
           jobTitle: 'DNS Consultant',
+          address: {
+            '@type': 'PostalAddress',
+            addressCountry: 'US',
+            addressRegion: 'East Coast',
+          },
+          knowsLanguage: 'English',
           knowsAbout: [
             'DNS',
             'DMARC',
@@ -76,10 +84,15 @@ const {
           name: 'FixDNS.net',
           url: 'https://fixdns.net/',
           description:
-            'One-on-one DNS troubleshooting and setup over Zoom with a MailerLite Certified Expert. DMARC, SPF, DKIM, MX records, Google & Microsoft email compliance, and newsletter integrations (MailerLite, Mailchimp, and more).',
+            'One-on-one DNS troubleshooting and setup over Zoom with a US-based, native-English-speaking MailerLite Certified Expert. DMARC, SPF, DKIM, MX records, Google & Microsoft email compliance, and newsletter integrations (MailerLite, Mailchimp, and more).',
           areaServed: 'Worldwide',
-          priceRange: '$85',
+          availableLanguage: 'en-US',
+          priceRange: '$85 - $145',
           provider: { '@id': 'https://fixdns.net/#michal' },
+          address: {
+            '@type': 'PostalAddress',
+            addressCountry: 'US',
+          },
           serviceType: [
             'DNS troubleshooting',
             'DMARC, SPF, DKIM setup',
@@ -87,14 +100,32 @@ const {
             'Newsletter DNS integration',
             'Domain migration',
           ],
-          offers: {
-            '@type': 'Offer',
-            name: '1-hour DNS troubleshooting session',
-            price: '85.00',
-            priceCurrency: 'USD',
-            url: 'https://cal.com/techguywithabeard/',
-            availability: 'https://schema.org/InStock',
-          },
+          offers: [
+            {
+              '@type': 'Offer',
+              name: 'Meet w/TechGuyWithABeard — 1-hour standard session',
+              price: '85.00',
+              priceCurrency: 'USD',
+              url: 'https://cal.com/techguywithabeard/meet',
+              availability: 'https://schema.org/InStock',
+            },
+            {
+              '@type': 'Offer',
+              name: 'Meet w/TechGuyWithABeard + Recording — 1-hour session with Zoom recording',
+              price: '95.00',
+              priceCurrency: 'USD',
+              url: 'https://cal.com/techguywithabeard/meet-recording',
+              availability: 'https://schema.org/InStock',
+            },
+            {
+              '@type': 'Offer',
+              name: 'Meet w/TechGuyWithABeard (After Hours) — urgent / off-hours 1-hour session',
+              price: '145.00',
+              priceCurrency: 'USD',
+              url: 'https://cal.com/techguywithabeard/meet-after-hours',
+              availability: 'https://schema.org/InStock',
+            },
+          ],
         },
         {
           '@type': 'FAQPage',
@@ -128,7 +159,7 @@ const {
               name: 'Do you record the session?',
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'Only if you ask. For an extra $10 I will record the Zoom call and send you a private download link so you have a permanent reference of every change we made and why.',
+                text: 'Only if you book the recording option. For $95 (instead of the $85 standard session) I record the Zoom call and send you a private download link so you have a permanent reference of every change we made and why.',
               },
             },
             {
@@ -137,6 +168,14 @@ const {
               acceptedAnswer: {
                 '@type': 'Answer',
                 text: 'If it ever runs long we can either book a follow-up slot or extend in 1-hour increments. There are no surprise charges — billing is per booked hour through the calendar.',
+              },
+            },
+            {
+              '@type': 'Question',
+              name: 'Where are you based and what language do we work in?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'I am based on the US East Coast and English is my first language. Every call is one-on-one with me — no offshore call center, no script read off a sheet, no language barrier.',
               },
             },
           ],
