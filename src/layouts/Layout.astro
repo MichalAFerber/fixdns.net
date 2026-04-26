@@ -1,0 +1,151 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title = 'Fix DNS Issues Fast — DMARC, SPF, DKIM & Email Deliverability Help | FixDNS.net',
+  description = 'Stuck with broken DNS on Cloudflare, GoDaddy, SiteGround, Hostinger, or anywhere else? Failing DMARC or the new Google & Microsoft email rules? Book a 1-hour Zoom session for $85 with a MailerLite Certified Expert and get it fixed today.',
+  canonical = 'https://fixdns.net/',
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0b2545" />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="FixDNS.net" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="preconnect" href="https://cal.com" />
+    <link rel="dns-prefetch" href="https://cal.com" />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Person',
+          '@id': 'https://fixdns.net/#michal',
+          name: 'Michal Ferber',
+          alternateName: 'TechGuyWithABeard',
+          url: 'https://techguywithabeard.com/',
+          email: 'michal@techguywithabeard.com',
+          sameAs: ['https://techguywithabeard.com/'],
+          jobTitle: 'DNS Consultant',
+          knowsAbout: [
+            'DNS',
+            'DMARC',
+            'SPF',
+            'DKIM',
+            'Email deliverability',
+            'MailerLite',
+            'Mailchimp',
+            'Domain migration',
+          ],
+          hasCredential: {
+            '@type': 'EducationalOccupationalCredential',
+            credentialCategory: 'certification',
+            name: 'MailerLite Certified Expert',
+            url: 'https://michalferber.me/2024-01-21-mailerlite-expert/',
+            recognizedBy: {
+              '@type': 'Organization',
+              name: 'MailerLite Academy',
+              url: 'https://www.mailerlite.com/',
+            },
+          },
+        },
+        {
+          '@type': 'ProfessionalService',
+          '@id': 'https://fixdns.net/#service',
+          name: 'FixDNS.net',
+          url: 'https://fixdns.net/',
+          description:
+            'One-on-one DNS troubleshooting and setup over Zoom with a MailerLite Certified Expert. DMARC, SPF, DKIM, MX records, Google & Microsoft email compliance, and newsletter integrations (MailerLite, Mailchimp, and more).',
+          areaServed: 'Worldwide',
+          priceRange: '$85',
+          provider: { '@id': 'https://fixdns.net/#michal' },
+          serviceType: [
+            'DNS troubleshooting',
+            'DMARC, SPF, DKIM setup',
+            'Email deliverability',
+            'Newsletter DNS integration',
+            'Domain migration',
+          ],
+          offers: {
+            '@type': 'Offer',
+            name: '1-hour DNS troubleshooting session',
+            price: '85.00',
+            priceCurrency: 'USD',
+            url: 'https://cal.com/techguywithabeard/',
+            availability: 'https://schema.org/InStock',
+          },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: 'Do you need my domain registrar password?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'No. I never ask for and never accept passwords. We work together over Zoom — either I share guidance while you click, or you grant me temporary remote control. You see every change as it happens, and access ends when the call ends.',
+              },
+            },
+            {
+              '@type': 'Question',
+              name: 'How long does a typical DNS fix take?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'About 90% of the issues I see — failing DMARC, broken SPF, missing DKIM, newsletter sender verification, mis-pointed MX records — are resolved in under an hour. Sessions are booked in 1-hour blocks at $85.',
+              },
+            },
+            {
+              '@type': 'Question',
+              name: 'Can you help with the new Google and Microsoft sender requirements?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'Yes. Since the 2024 bulk-sender rules from Google, Yahoo, and Microsoft, I have helped a lot of small businesses get aligned SPF, DKIM, and DMARC published correctly so their email stops bouncing or landing in spam.',
+              },
+            },
+            {
+              '@type': 'Question',
+              name: 'Do you record the session?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'Only if you ask. For an extra $10 I will record the Zoom call and send you a private download link so you have a permanent reference of every change we made and why.',
+              },
+            },
+            {
+              '@type': 'Question',
+              name: 'What if my problem takes longer than an hour?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'If it ever runs long we can either book a follow-up slot or extend in 1-hour increments. There are no surprise charges — billing is per booked hour through the calendar.',
+              },
+            },
+          ],
+        },
+      ],
+    })} />
+  </head>
+  <body>
+    <a href="#main" class="skip">Skip to content</a>
+    <slot />
+  </body>
+</html>

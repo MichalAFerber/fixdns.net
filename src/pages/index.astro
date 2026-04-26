@@ -1,0 +1,316 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const calLink = 'https://cal.com/techguywithabeard/';
+const tgwabLink = 'https://techguywithabeard.com/';
+const email = 'michal@techguywithabeard.com';
+const mailerLiteCert = 'https://michalferber.me/2024-01-21-mailerlite-expert/';
+---
+<Layout>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a href="/" class="brand" aria-label="FixDNS.net home">
+        <span class="brand-mark" aria-hidden="true">{`{ }`}</span>
+        <span class="brand-name">FixDNS<span class="brand-tld">.net</span></span>
+      </a>
+      <nav aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#hosts">Hosts</a>
+        <a href="#mailers">Mailers</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="btn btn-primary btn-sm" href={calLink} target="_blank" rel="noopener">Book a session</a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow-row">
+          <span class="eyebrow">DNS help, by the hour, by a real human</span>
+          <a class="badge" href={mailerLiteCert} target="_blank" rel="noopener">MailerLite Certified Expert</a>
+        </div>
+        <h1>Your DNS is broken. I&rsquo;ll fix it on a Zoom call.</h1>
+        <p class="lede">
+          DMARC failing? SPF a mess? MailerLite or Mailchimp refusing to verify? New Google &amp; Microsoft email rules dropping your mail into spam? Book a one-hour session and we&rsquo;ll get it sorted together &mdash; usually in well under the hour.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href={calLink} target="_blank" rel="noopener">Book a 1-hour session &mdash; $85</a>
+          <a class="btn btn-ghost" href="#how">See how it works</a>
+        </div>
+        <ul class="hero-trust" aria-label="What you get">
+          <li><strong>$85</strong> flat per booked hour</li>
+          <li><strong>~90%</strong> of issues solved in under an hour</li>
+          <li><strong>Zero</strong> passwords required, ever</li>
+          <li><strong>MailerLite</strong> Certified Expert</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="wrap">
+        <h2>What I fix</h2>
+        <p class="section-lede">
+          I&rsquo;m a retired sysadmin who chose to spend retirement on the one thing nobody else wants to touch: DNS. These are the calls I take every week.
+        </p>
+        <div class="grid">
+          <article class="card">
+            <h3>DMARC, SPF &amp; DKIM</h3>
+            <p>Aligned authentication, correct policy levels, sub-domain coverage, and reports you can actually read. Built right the first time so Google, Yahoo, and Microsoft stop rejecting your mail.</p>
+          </article>
+          <article class="card">
+            <h3>Google &amp; Microsoft sender rules</h3>
+            <p>The 2024 bulk-sender requirements caught a lot of businesses off guard. If your newsletters or transactional mail suddenly bounces or hits spam, this is almost always the cause &mdash; and it&rsquo;s fixable.</p>
+          </article>
+          <article class="card">
+            <span class="cert-line">MailerLite Certified Expert</span>
+            <h3>Newsletter platform setup</h3>
+            <p>I&rsquo;m a <a href={mailerLiteCert} target="_blank" rel="noopener">MailerLite Certified Expert</a> &mdash; seven certifications through MailerLite Academy covering email deliverability, sender authentication, automation, landing pages, and e-commerce. Same comfort level with Mailchimp, ConvertKit, Beehiiv, ActiveCampaign, Brevo, Sendgrid, and Postmark: the right CNAMEs, TXT records, and verification bits in place so your sends authenticate properly.</p>
+          </article>
+          <article class="card">
+            <h3>Broken MX &amp; mail routing</h3>
+            <p>Email vanishing, bouncing, or going to the wrong inbox? We trace the records, the routing, and the priorities, and put them back the way they should be.</p>
+          </article>
+          <article class="card">
+            <h3>Domain &amp; registrar moves</h3>
+            <p>Migrating between Cloudflare, GoDaddy, SiteGround, Hostinger, Bluehost, Namecheap, Google Domains / Squarespace, AWS Route&nbsp;53, IONOS, or anywhere else &mdash; without dropping mail or breaking the website during the cutover.</p>
+          </article>
+          <article class="card">
+            <h3>&ldquo;I don&rsquo;t even know what&rsquo;s wrong&rdquo;</h3>
+            <p>Honestly the most common booking. We hop on Zoom, I look at your records, and we figure out what&rsquo;s actually broken. No judgment &mdash; DNS is genuinely confusing.</p>
+          </article>
+        </div>
+        <div class="cta-row centered">
+          <a class="btn btn-primary" href={calLink} target="_blank" rel="noopener">Pick a time that works</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section section-alt">
+      <div class="wrap">
+        <h2>How it works</h2>
+        <ol class="steps">
+          <li>
+            <span class="step-num" aria-hidden="true">1</span>
+            <h3>Book a 1-hour slot</h3>
+            <p>Pick any open time on the calendar. Payment runs through Stripe at the moment of booking &mdash; $85 for the hour, plus $10 if you want the call recorded.</p>
+          </li>
+          <li>
+            <span class="step-num" aria-hidden="true">2</span>
+            <h3>Hop on Zoom</h3>
+            <p>You share your screen, or you give me temporary remote control &mdash; your choice. Either way you watch every single change as I make it.</p>
+          </li>
+          <li>
+            <span class="step-num" aria-hidden="true">3</span>
+            <h3>I never touch your passwords</h3>
+            <p>You stay logged in to your registrar and DNS host. I guide and click, you approve. When the call ends, my access ends.</p>
+          </li>
+          <li>
+            <span class="step-num" aria-hidden="true">4</span>
+            <h3>You leave with it fixed</h3>
+            <p>Most sessions end with everything working and a clear note of what changed. If you paid for the recording, the download link lands in your inbox right after.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="pricing" class="section">
+      <div class="wrap">
+        <h2>Pricing</h2>
+        <p class="section-lede">No subscriptions, no retainers, no surprise invoices. You book the hour you need.</p>
+        <div class="pricing-grid">
+          <article class="price-card">
+            <h3>1-hour session</h3>
+            <p class="price"><span class="dollar">$</span>85</p>
+            <ul>
+              <li>Zoom call, screen share or remote control</li>
+              <li>Real-time DNS fixes, you watch every step</li>
+              <li>Plain-English summary of what we changed</li>
+              <li>Stripe payment at booking</li>
+            </ul>
+            <a class="btn btn-primary btn-block" href={calLink} target="_blank" rel="noopener">Book now</a>
+          </article>
+          <article class="price-card price-card-accent">
+            <h3>Add a recording</h3>
+            <p class="price"><span class="dollar">+$</span>10</p>
+            <ul>
+              <li>Full Zoom recording of the session</li>
+              <li>Private download link, yours to keep</li>
+              <li>Re-watch any change at any time</li>
+              <li>Great if you have to explain it later</li>
+            </ul>
+            <a class="btn btn-ghost btn-block" href={calLink} target="_blank" rel="noopener">Add at booking</a>
+          </article>
+        </div>
+        <p class="fineprint">~90% of issues are solved in a single hour. If a job genuinely needs more time, we book another hour &mdash; never a surprise charge.</p>
+      </div>
+    </section>
+
+    <section id="hosts" class="section section-alt">
+      <div class="wrap">
+        <h2>Works with every registrar and DNS host</h2>
+        <p class="section-lede">
+          Whatever control panel you log into, the DNS underneath follows the same rules. I&rsquo;ve worked inside all of these and the rest of the long tail. If your provider isn&rsquo;t listed, ask &mdash; the answer is almost always yes.
+        </p>
+        <ul class="brand-grid" aria-label="Supported registrars and DNS hosts">
+          <li>Cloudflare</li>
+          <li>GoDaddy</li>
+          <li>SiteGround</li>
+          <li>Hostinger</li>
+          <li>Namecheap</li>
+          <li>Bluehost</li>
+          <li>HostGator</li>
+          <li>DreamHost</li>
+          <li>IONOS (1&amp;1)</li>
+          <li>Network Solutions</li>
+          <li>Google Domains</li>
+          <li>Squarespace Domains</li>
+          <li>AWS Route&nbsp;53</li>
+          <li>Hover</li>
+          <li>Porkbun</li>
+          <li>Name.com</li>
+          <li>Domain.com</li>
+          <li>Dynadot</li>
+          <li>DNSimple</li>
+          <li>Gandi</li>
+          <li>Wix</li>
+          <li>WordPress.com</li>
+          <li>Shopify</li>
+          <li>&hellip;and the rest</li>
+        </ul>
+        <div class="cta-row centered">
+          <a class="btn btn-primary" href={calLink} target="_blank" rel="noopener">Book me to fix yours</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="mailers" class="section">
+      <div class="wrap">
+        <h2>Newsletter &amp; email-marketing platforms</h2>
+        <p class="section-lede">
+          MailerLite is my certified specialty &mdash; but every modern sender hands you a similar set of DNS records to verify (SPF include, DKIM CNAMEs or TXT, custom return-path, sometimes BIMI). Show me the platform, I&rsquo;ll get it authenticated.
+        </p>
+        <ul class="brand-grid" aria-label="Supported newsletter and email-marketing platforms">
+          <li>MailerLite</li>
+          <li>Mailchimp</li>
+          <li>ConvertKit / Kit</li>
+          <li>Beehiiv</li>
+          <li>Substack</li>
+          <li>ActiveCampaign</li>
+          <li>Brevo (Sendinblue)</li>
+          <li>Klaviyo</li>
+          <li>Constant Contact</li>
+          <li>Campaign Monitor</li>
+          <li>AWeber</li>
+          <li>GetResponse</li>
+          <li>Drip</li>
+          <li>Flodesk</li>
+          <li>HubSpot</li>
+          <li>Omnisend</li>
+          <li>MailPoet</li>
+          <li>Sendgrid</li>
+          <li>Postmark</li>
+          <li>Mailgun</li>
+          <li>Mailjet</li>
+          <li>Amazon SES</li>
+          <li>Resend</li>
+          <li>&hellip;and the rest</li>
+        </ul>
+        <div class="cta-row centered">
+          <a class="btn btn-primary" href={calLink} target="_blank" rel="noopener">Get your sender authenticated</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section section-alt">
+      <div class="wrap two-col">
+        <div>
+          <h2>About me</h2>
+          <p>
+            I&rsquo;m <strong>Michal Ferber</strong> &mdash; better known online as <a href={tgwabLink} target="_blank" rel="noopener">TechGuyWithABeard</a>. I&rsquo;m retired, I don&rsquo;t take on full-time clients, I don&rsquo;t run a marketing funnel, I don&rsquo;t have a team. I take a small number of DNS calls a week because, after a long career, troubleshooting DNS is the part I still actually enjoy.
+          </p>
+          <p>
+            That means when you book me you get a one-on-one session focused entirely on your problem &mdash; not an assistant, not a ticket queue, not a script. I&rsquo;ve spent years on DMARC, SPF, DKIM, mail routing, registrar migrations, and every quirky newsletter platform in the wild. I&rsquo;m a <a href={mailerLiteCert} target="_blank" rel="noopener"><strong>MailerLite Certified Expert</strong></a> &mdash; seven certifications through MailerLite Academy covering deliverability, sender authentication, and the rest &mdash; fluent in the broader field, and if it touches DNS I&rsquo;ve probably fixed it before.
+          </p>
+          <p>
+            Questions before you book? Email me at <a href={`mailto:${email}`}>{email}</a>.
+          </p>
+        </div>
+        <ul class="trust-list">
+          <li><strong>MailerLite Certified Expert</strong> &mdash; <a href={mailerLiteCert} target="_blank" rel="noopener">see credential</a></li>
+          <li><strong>Decades</strong> hands-on with DNS, email, and registrars</li>
+          <li><strong>You stay in control</strong> &mdash; I never log in as you</li>
+          <li><strong>Plain English</strong>, not jargon dumps</li>
+          <li><strong>Fixed price</strong> per hour, billed through Cal.com + Stripe</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <div class="wrap">
+        <h2>Frequently asked questions</h2>
+        <div class="faq">
+          <details>
+            <summary>Do you need my domain registrar or DNS host password?</summary>
+            <p>No. I never ask for and never accept passwords. We work together over Zoom &mdash; either I guide while you click, or you grant me temporary remote control. You see every change as it happens, and access ends when the call ends.</p>
+          </details>
+          <details>
+            <summary>How long does a typical DNS fix take?</summary>
+            <p>About 90% of the issues I see &mdash; failing DMARC, broken SPF, missing DKIM, newsletter sender verification, mis-pointed MX records &mdash; are resolved in well under an hour. Sessions are booked in 1-hour blocks at $85.</p>
+          </details>
+          <details>
+            <summary>Can you help with the new Google and Microsoft sender requirements?</summary>
+            <p>Yes. The 2024 bulk-sender rules from Google, Yahoo, and Microsoft caught a lot of small businesses off guard. I&rsquo;ll get aligned SPF, DKIM, and DMARC published correctly so your mail stops bouncing or landing in spam.</p>
+          </details>
+          <details>
+            <summary>Are you actually MailerLite certified?</summary>
+            <p>Yes &mdash; <a href={mailerLiteCert} target="_blank" rel="noopener">MailerLite Certified Expert</a>, with seven certifications through MailerLite Academy covering email deliverability and spam avoidance, sender authentication fundamentals, automation, landing pages, lead generation, e-commerce, and platform basics. If your newsletter is hitting deliverability issues, sender verification problems, or DNS-side weirdness, I&rsquo;ve spent real time inside that platform&rsquo;s quirks.</p>
+          </details>
+          <details>
+            <summary>Which other newsletter and email platforms do you support?</summary>
+            <p>All the popular ones &mdash; <strong>Mailchimp, ConvertKit (Kit), Beehiiv, Substack, ActiveCampaign, Brevo (Sendinblue), Klaviyo, Constant Contact, Campaign Monitor, AWeber, GetResponse, Drip, Flodesk, HubSpot, Omnisend, MailPoet, Sendgrid, Postmark, Mailgun, Mailjet, Amazon SES, Resend</strong>, and more. If your platform issues DNS records to verify, we can get them in place.</p>
+          </details>
+          <details>
+            <summary>Which registrars and DNS hosts do you work with?</summary>
+            <p>All of them. The big ones I see most often: <strong>Cloudflare, GoDaddy, SiteGround, Hostinger, Namecheap, Bluehost, HostGator, DreamHost, IONOS (1&amp;1), Network Solutions, Google Domains / Squarespace Domains, AWS Route 53, Hover, Porkbun, Name.com, Domain.com, Dynadot, DNSimple, Gandi, Wix, WordPress.com, Shopify</strong>, and the rest. Different control panels, same DNS underneath.</p>
+          </details>
+          <details>
+            <summary>Do you record the session?</summary>
+            <p>Only if you ask. For an extra $10 I&rsquo;ll record the Zoom call and send you a private download link so you have a permanent reference of every change we made and why.</p>
+          </details>
+          <details>
+            <summary>What if it takes longer than an hour?</summary>
+            <p>If it runs long we can either book a follow-up slot or extend in 1-hour increments. There are no surprise charges &mdash; billing is per booked hour through the calendar.</p>
+          </details>
+          <details>
+            <summary>Do you offer refunds?</summary>
+            <p>If we hop on the call and I can&rsquo;t actually help with your issue, you get a full refund. That&rsquo;s rare &mdash; most things that look like &ldquo;DNS&rdquo; really are DNS.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-final">
+      <div class="wrap">
+        <h2>Let&rsquo;s fix it today.</h2>
+        <p>One hour, $85, and the broken DNS thing that&rsquo;s been bothering you for weeks is just&hellip; done.</p>
+        <a class="btn btn-primary btn-lg" href={calLink} target="_blank" rel="noopener">Book a 1-hour session</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p>&copy; 2026 FixDNS.net &mdash; Michal Ferber, aka <a href={tgwabLink} target="_blank" rel="noopener">TechGuyWithABeard</a>.</p>
+      <p>
+        <a href={`mailto:${email}`}>{email}</a>
+        &nbsp;&middot;&nbsp;
+        <a href={calLink} target="_blank" rel="noopener">Book a session</a>
+      </p>
+    </div>
+  </footer>
+</Layout>
