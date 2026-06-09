@@ -39,12 +39,14 @@ Hosted on **Cloudflare Pages**, auto-deployed from this repo's `main` branch.
 | Root directory | *(empty)* |
 | Node version | 20 or 22 |
 
-Custom domain: `fixdns.net` (added via Cloudflare Pages → Custom domains). Secondary domain `brokedns.com` 301-redirects to the primary via a Cloudflare Bulk Redirect.
+Custom domain: `fixdns.net` (added via Cloudflare Pages → Custom domains). The `www.fixdns.net`, `brokedns.com`, and `www.brokedns.com` aliases are also attached to the same Pages project; a Pages Functions middleware (`functions/_middleware.js`) 301-redirects every non-apex hostname to `https://fixdns.net/` so Search Console sees real redirects instead of duplicate "alternate page" entries.
 
 ## Repository layout
 
 ```
 astro.config.mjs        Astro + sitemap integration
+functions/
+  _middleware.js        301-redirects non-apex hosts to https://fixdns.net/
 public/
   _headers              Security headers (HSTS, X-Frame-Options, etc.)
   robots.txt            Points to sitemap-index.xml
