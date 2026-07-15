@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="404 — Page not found">
+  <section style="text-align:center;padding:6rem 1rem">
+    <p style="font:600 .8rem/1 system-ui;letter-spacing:.1em;text-transform:uppercase;color:#888">404</p>
+    <h1>That page can't be found.</h1>
+    <p><a href="/">← Back home</a></p>
+  </section>
+  <script is:inline>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};plausible("404",{props:{path:document.location.pathname}})</script>
+</Layout>
