@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const calLink = 'https://cal.com/techguywithabeard/';
+---
+<Layout
+  title="Page not found (404) | FixDNS.net"
+  description="That page doesn't exist. Head back to FixDNS.net to book a 1-hour DNS troubleshooting session."
+  noindex={true}
+>
+  <main id="main" class="notfound">
+    <div class="wrap">
+      <p class="nf-mark" aria-hidden="true">{`{ 404 }`}</p>
+      <h1>This page took a wrong turn in the DNS.</h1>
+      <p class="lede">
+        The link is broken or the page has moved &mdash; but your DNS problem is still fixable.
+        Let&rsquo;s get you back on track.
+      </p>
+      <div class="cta-row centered">
+        <a class="btn btn-primary" href="/">Back to home</a>
+        <a class="btn btn-ghost" href={calLink} target="_blank" rel="noopener">Book a session</a>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .notfound {
+    display: flex;
+    align-items: center;
+    min-height: 70dvh;
+    text-align: center;
+    padding: 64px 0;
+  }
+  .nf-mark {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-weight: 700;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    color: var(--accent);
+    margin: 0 0 8px;
+  }
+  .notfound h1 { margin: 0 auto 12px; max-width: 18ch; }
+  .notfound .lede { margin: 0 auto 28px; max-width: 52ch; color: var(--muted); }
+  .notfound .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+</style>

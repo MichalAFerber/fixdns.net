@@ -44,25 +44,45 @@ Custom domain: `fixdns.net` (added via Cloudflare Pages → Custom domains). The
 ## Repository layout
 
 ```
-astro.config.mjs        Astro + sitemap integration
+astro.config.mjs             Astro + sitemap integration
 functions/
-  _middleware.js        301-redirects non-apex hosts to https://fixdns.net/
+  _middleware.js             301-redirects non-apex hosts to https://fixdns.net/
+scripts/
+  og-card.svg                Source art for the Open Graph card
+  gen-assets.mjs             Rasterizes og.png + favicon.ico (needs: npm i --no-save sharp)
 public/
-  _headers              Security headers (HSTS, X-Frame-Options, etc.)
-  robots.txt            Points to sitemap-index.xml
-  favicon.svg           Primary favicon
-  apple-touch-icon.png  iOS home-screen icon (180x180)
-  icon-192.png          PWA icon
-  icon-512.png          PWA icon
+  _headers                   Security headers + strict CSP
+  robots.txt                 Points to sitemap-index.xml
+  site.webmanifest           PWA manifest
+  ads.txt                    Declares no authorized ad sellers
+  llms.txt                   Site summary for AI crawlers (llmstxt.org)
+  .well-known/security.txt   RFC 9116 security contact
+  og.png                     Open Graph / Twitter card (1200x630)
+  favicon.svg                Primary favicon = brand icon
+  favicon.ico                Legacy favicon fallback (16/32/48)
+  apple-touch-icon.png       iOS home-screen icon (180x180)
+  icon-192.png               PWA icon
+  icon-512.png               PWA icon
 src/
-  layouts/Layout.astro  HTML shell, meta, Schema.org JSON-LD
-  pages/index.astro     The landing page
-  styles/global.css     All styles
+  layouts/Layout.astro       HTML shell, meta, Schema.org JSON-LD
+  pages/index.astro          The landing page
+  pages/404.astro            Branded not-found page
+  styles/global.css          All styles
 ```
+
+## Deviations from TGWAB Dev Standards
+
+- **Vanilla CSS instead of Tailwind** — this is a single-page landing site with one
+  ~390-line stylesheet (`src/styles/global.css`). A Tailwind toolchain would add build
+  weight and churn without a maintenance win at this size, so styles stay vanilla.
+- **`Permissions-Policy` omits `interest-cohort`** — the FLoC feature was withdrawn and
+  Chrome now logs `Unrecognized feature: 'interest-cohort'`, so it is intentionally left
+  out of the standards template's value.
 
 ## SEO notes
 
-- Schema.org JSON-LD covers `Person`, `ProfessionalService` (with three `Offer` tiers), and `FAQPage`.
+- Schema.org JSON-LD covers `WebSite`, `Person`, `ProfessionalService` (with three `Offer` tiers), and `FAQPage`.
+- Open Graph / Twitter card served from `public/og.png` (1200×630), regenerated via `scripts/gen-assets.mjs`.
 - Pricing tiers: $85 standard, $95 with recording, $145 after-hours.
 - Long-tail keyword targets: DMARC/SPF/DKIM, Google + Microsoft sender requirements, MailerLite / Mailchimp / ConvertKit / Beehiiv DNS verification, plus a brand grid covering Cloudflare, GoDaddy, SiteGround, Hostinger, Namecheap, Bluehost, and 18+ other registrars and DNS hosts.
 

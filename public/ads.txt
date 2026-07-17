@@ -1,0 +1,4 @@
+# FixDNS.net does not run advertising and authorizes no programmatic sellers.
+# This file exists solely to declare that no ad inventory is legitimate,
+# blocking domain-spoofed inventory from being sold on our behalf.
+# No authorized digital sellers.
