@@ -12,7 +12,7 @@ The marketing landing page for **FixDNS.net** — Michal Ferber's freelance DNS 
 - [Astro 5](https://astro.build) — static site generator
 - [`@astrojs/sitemap`](https://docs.astro.build/en/guides/integrations-guide/sitemap/) — auto-generated sitemap
 - Vanilla CSS in `src/styles/global.css`
-- Zero JavaScript at runtime
+- Minimal runtime JS: the contact form (Turnstile + fetch submit) only
 
 ## Local development
 
@@ -48,6 +48,8 @@ Custom domain: `fixdns.net` (added via Cloudflare Pages → Custom domains). The
 astro.config.mjs             Astro + sitemap integration
 functions/
   _middleware.js             301-redirects non-apex hosts to https://fixdns.net/
+  api/
+    contact.js               Contact form: Turnstile verify + Forward Email SMTP send
 scripts/
   og-card.svg                Source art for the Open Graph card
   gen-assets.mjs             Rasterizes og.png + favicon.ico (needs: npm i --no-save sharp)
@@ -79,6 +81,35 @@ src/
 - **`Permissions-Policy` omits `interest-cohort`** — the FLoC feature was withdrawn and
   Chrome now logs `Unrecognized feature: 'interest-cohort'`, so it is intentionally left
   out of the standards template's value.
+
+## Contact form
+
+`POST /api/contact` (Pages Function, `functions/api/contact.js`) verifies Cloudflare
+Turnstile server-side, then sends the message via Forward Email SMTP as
+`FixDNS.net <noreply@fixdns.net>` to `michal@fixdns.net`, `Reply-To` the submitter.
+User input is HTML-escaped and guarded against header injection; the body follows
+the §6 four-line layout.
+
+### Configuration
+
+| Var | Where | Purpose |
+| --- | --- | --- |
+| `PUBLIC_TURNSTILE_SITE_KEY` | Pages **build** var (plaintext) | Public Turnstile site key rendered into the page. Falls back to Cloudflare's always-passes test key when unset, so previews render. |
+| `TURNSTILE_SECRET_KEY` | Pages **secret** | Turnstile secret for server-side verification. |
+| `SMTP_PASSWORD` | Pages **secret** | Forward Email SMTP password (from Proton Pass — never committed). |
+| `SMTP_USERNAME` | Pages secret *(optional)* | SMTP auth user; defaults to `noreply@fixdns.net`. |
+| `CONTACT_RECIPIENT` | Pages var *(optional)* | Recipient; defaults to `michal@fixdns.net`. |
+
+Set the two required secrets with:
+
+```sh
+npx wrangler pages secret put TURNSTILE_SECRET_KEY --project-name fixdns-net
+npx wrangler pages secret put SMTP_PASSWORD        --project-name fixdns-net
+```
+
+`PUBLIC_TURNSTILE_SITE_KEY` is a build-time var — set it under Pages → Settings →
+Variables and Secrets (plaintext), then redeploy. SMTP delivery requires the
+domain's DNS house style (§13: SPF `-all`, DKIM, strict DMARC) to be live.
 
 ## SEO notes
 
