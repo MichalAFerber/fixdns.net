@@ -1,0 +1,15 @@
+{
+  "name": "FixDNS.net",
+  "short_name": "FixDNS",
+  "description": "Freelance DNS troubleshooting over Zoom — DMARC, SPF, DKIM, and email deliverability, fixed by a real human.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#0b2545",
+  "background_color": "#0b2545",
+  "icons": [
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any", "purpose": "any" },
+    { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" }
+  ]
+}

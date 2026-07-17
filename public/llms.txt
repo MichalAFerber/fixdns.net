@@ -1,0 +1,21 @@
+# FixDNS.net
+
+> Freelance DNS troubleshooting by Michal Ferber (TechGuyWithABeard) — one-on-one
+> Zoom sessions that fix DMARC, SPF, DKIM, MX/mail routing, the 2024 Google &
+> Microsoft bulk-sender rules, and newsletter-platform DNS verification
+> (MailerLite, Mailchimp, and the rest). US East Coast, native English. You keep
+> control of your registrar and DNS host — no passwords are ever shared. Sessions
+> are booked by the hour: $85 standard, $95 recorded, $145 after-hours. Roughly
+> 90% of issues are resolved in under an hour.
+
+## Key links
+
+- [Home](https://fixdns.net/): Services, how it works, pricing, and FAQ.
+- [Book a session](https://cal.com/techguywithabeard/): Cal.com booking (Stripe payment at booking).
+- [Source code](https://github.com/MichalAFerber/fixdns.net): Public repository for this site.
+- [MailerLite Certified Expert](https://michalferber.me/2024-01-21-mailerlite-expert/): Credential.
+
+## Notes
+
+- No user accounts, no forms, and no data collected on-site; booking and payment happen on Cal.com + Stripe.
+- Analytics is privacy-friendly, self-hosted Plausible — no Google Analytics, no ad tracking.
