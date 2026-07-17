@@ -4,4 +4,4 @@
   X-Frame-Options: DENY
   Referrer-Policy: no-referrer
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Content-Security-Policy: default-src 'none'; script-src 'unsafe-inline' https://plausible.thompsonblack.us; style-src 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data:; connect-src https://plausible.thompsonblack.us; manifest-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'unsafe-inline' https://plausible.thompsonblack.us; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://plausible.thompsonblack.us; manifest-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
