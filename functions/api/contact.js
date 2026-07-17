@@ -9,7 +9,8 @@
 //   SMTP_PASSWORD          Forward Email SMTP password (from Proton Pass)
 // Optional overrides: SMTP_USERNAME, CONTACT_RECIPIENT.
 
-import { connect } from 'cloudflare:sockets';
+// `cloudflare:sockets` is imported lazily inside sendMail so this module also
+// loads under plain Node for unit-testing the pure validation/escaping logic.
 
 const WEBSITE_NAME = 'FixDNS.net';
 const SMTP_HOST = 'smtp.forwardemail.net';
@@ -41,28 +42,9 @@ export async function onRequestPost(context) {
     return json({ ok: false, error: 'Invalid request.' }, 400);
   }
 
-  // --- collect + sanitize -------------------------------------------------
-  const clean = (v) => (typeof v === 'string' ? v.trim() : '');
-  const name = clean(data.name);
-  const email = clean(data.email);
-  const subject = clean(data.subject);
-  const message = clean(data.message);
-  const token = clean(data.token || data['cf-turnstile-response']);
-
-  if (!name || !email || !subject || !message) {
-    return json({ ok: false, error: 'Please fill in every field.' }, 400);
-  }
-  if (name.length > LIMITS.name || email.length > LIMITS.email ||
-      subject.length > LIMITS.subject || message.length > LIMITS.message) {
-    return json({ ok: false, error: 'One of the fields is too long.' }, 400);
-  }
-  // Header-injection guard: nothing that lands in a header may contain CR/LF.
-  if (/[\r\n]/.test(email) || /[\r\n]/.test(subject) || !EMAIL_RE.test(email)) {
-    return json({ ok: false, error: 'Please enter a valid email address.' }, 400);
-  }
-  if (!token) {
-    return json({ ok: false, error: 'Please complete the challenge.' }, 400);
-  }
+  const v = validate(data);
+  if (!v.ok) return json({ ok: false, error: v.error }, v.status);
+  const { name, email, subject, message, token } = v.fields;
 
   // --- Turnstile (server-side, §7) ----------------------------------------
   const ok = await verifyTurnstile(token, env.TURNSTILE_SECRET_KEY,
@@ -90,7 +72,35 @@ export async function onRequestPost(context) {
   return json({ ok: true });
 }
 
-// Only POST is handled; Pages returns 405 for other verbs automatically.
+export const onRequestGet = () =>
+  new Response('Method Not Allowed', { status: 405, headers: { Allow: 'POST' } });
+
+// Pure input validation + sanitization (no I/O) — unit-tested.
+export function validate(data) {
+  const clean = (val) => (typeof val === 'string' ? val.trim() : '');
+  const fields = {
+    name: clean(data && data.name),
+    email: clean(data && data.email),
+    subject: clean(data && data.subject),
+    message: clean(data && data.message),
+    token: clean(data && (data.token || data['cf-turnstile-response'])),
+  };
+  if (!fields.name || !fields.email || !fields.subject || !fields.message) {
+    return { ok: false, status: 400, error: 'Please fill in every field.' };
+  }
+  if (fields.name.length > LIMITS.name || fields.email.length > LIMITS.email ||
+      fields.subject.length > LIMITS.subject || fields.message.length > LIMITS.message) {
+    return { ok: false, status: 400, error: 'One of the fields is too long.' };
+  }
+  // Header-injection guard: nothing that lands in a mail header may contain CR/LF.
+  if (/[\r\n]/.test(fields.email) || /[\r\n]/.test(fields.subject) || !EMAIL_RE.test(fields.email)) {
+    return { ok: false, status: 400, error: 'Please enter a valid email address.' };
+  }
+  if (!fields.token) {
+    return { ok: false, status: 400, error: 'Please complete the challenge.' };
+  }
+  return { ok: true, fields };
+}
 
 async function verifyTurnstile(token, secret, ip) {
   const body = new FormData();
@@ -106,14 +116,14 @@ async function verifyTurnstile(token, secret, ip) {
   }
 }
 
-function escapeHtml(s) {
+export function escapeHtml(s) {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
 // Exact spec layout: tab after the labels, blank line before the message,
 // preserved with white-space:pre. Every user value is HTML-escaped.
-function buildBody(name, email, message) {
+export function buildBody(name, email, message) {
   return `<div style="white-space:pre; font-family:system-ui, sans-serif;">Name:\t${escapeHtml(name)}
 Email:\t${escapeHtml(email)}
 
@@ -130,6 +140,7 @@ function b64(str) {
 
 // Minimal SMTP-over-TLS client on Cloudflare's socket API (implicit TLS, 465).
 async function sendMail({ username, password, from, fromName, to, replyTo, subject, html }) {
+  const { connect } = await import('cloudflare:sockets');
   const socket = connect({ hostname: SMTP_HOST, port: SMTP_PORT }, { secureTransport: 'on' });
   const writer = socket.writable.getWriter();
   const reader = socket.readable.getReader();
