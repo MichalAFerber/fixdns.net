@@ -5,6 +5,7 @@ The marketing landing page for **FixDNS.net** — Michal Ferber's freelance DNS 
 - **Live site:** https://fixdns.net
 - **Booking:** https://cal.com/techguywithabeard/
 - **Owner:** Michal Ferber (TechGuyWithABeard) · michal@techguywithabeard.com
+- **Repo class:** Class B — Monetized (TGWAB Dev Standards §10). Private repo, all rights reserved, no source/Octocat links on the site.
 
 ## Stack
 
@@ -86,6 +87,11 @@ src/
 - Pricing tiers: $85 standard, $95 with recording, $145 after-hours.
 - Long-tail keyword targets: DMARC/SPF/DKIM, Google + Microsoft sender requirements, MailerLite / Mailchimp / ConvertKit / Beehiiv DNS verification, plus a brand grid covering Cloudflare, GoDaddy, SiteGround, Hostinger, Namecheap, Bluehost, and 18+ other registrars and DNS hosts.
 
-## License
+## License & rights
 
-All content © Michal Ferber. The source is published for transparency, not as a template — please don't copy the brand or copy.
+**All rights reserved.** © 2026 Michal Ferber. FixDNS.net is a paid service, so
+under §10 of the TGWAB Dev Standards this is a **Class B — Monetized** project:
+the repository is private and the code and content carry **no license grant**.
+You may not copy, reuse, redistribute, or adapt the source, brand, or copy.
+Bundled third-party dependencies remain under their own licenses (see their
+respective packages).
