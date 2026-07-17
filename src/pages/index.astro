@@ -8,6 +8,9 @@ const calAfterHours = 'https://cal.com/techguywithabeard/meet-after-hours';
 const tgwabLink = 'https://techguywithabeard.com/';
 const email = 'michal@techguywithabeard.com';
 const mailerLiteCert = 'https://michalferber.me/2024-01-21-mailerlite-expert/';
+// Public Turnstile site key. Set PUBLIC_TURNSTILE_SITE_KEY as a Pages build var;
+// falls back to Cloudflare's always-passes test key so previews still render.
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA';
 ---
 <Layout>
   <header class="site-header">
@@ -23,6 +26,7 @@ const mailerLiteCert = 'https://michalferber.me/2024-01-21-mailerlite-expert/';
         <a href="#hosts">Hosts</a>
         <a href="#mailers">Mailers</a>
         <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
       </nav>
       <a class="btn btn-primary btn-sm" href={calLink} target="_blank" rel="noopener">Book a session</a>
     </div>
@@ -326,6 +330,37 @@ const mailerLiteCert = 'https://michalferber.me/2024-01-21-mailerlite-expert/';
       </div>
     </section>
 
+    <section id="contact" class="section section-alt">
+      <div class="wrap">
+        <h2>Send a message</h2>
+        <p class="section-lede">
+          Quick question before you book, or not sure which option fits? Drop me a note and I&rsquo;ll get back to you. For an actual fix, booking a <a href={calStandard} target="_blank" rel="noopener">1-hour session</a> is still the fastest path.
+        </p>
+        <form id="contact-form" class="contact-form" method="post" action="/api/contact" novalidate>
+          <div class="field">
+            <label for="cf-name">Name</label>
+            <input id="cf-name" name="name" type="text" autocomplete="name" maxlength="120" required />
+          </div>
+          <div class="field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" name="email" type="email" autocomplete="email" maxlength="254" required />
+          </div>
+          <div class="field">
+            <label for="cf-subject">Subject</label>
+            <input id="cf-subject" name="subject" type="text" maxlength="160" required />
+          </div>
+          <div class="field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="5" maxlength="5000" required></textarea>
+          </div>
+          <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="auto"></div>
+          <button type="submit" class="btn btn-primary" id="cf-submit">Send message</button>
+          <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
+          <noscript><p class="form-status">This form needs JavaScript. You can email me at <a href={`mailto:${email}`}>{email}</a>.</p></noscript>
+        </form>
+      </div>
+    </section>
+
     <section class="cta-final">
       <div class="wrap">
         <h2>Let&rsquo;s fix it today.</h2>
@@ -341,4 +376,53 @@ const mailerLiteCert = 'https://michalferber.me/2024-01-21-mailerlite-expert/';
       <p>&copy; 2026 | Created with <span class="heart" aria-label="love">❤️</span> by Michal Ferber, aka <a href={tgwabLink} target="_blank" rel="noopener">TechGuyWithABeard</a></p>
     </div>
   </footer>
+
+  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script is:inline>
+    (function () {
+      var form = document.getElementById('contact-form');
+      if (!form) return;
+      var statusEl = document.getElementById('cf-status');
+      var btn = document.getElementById('cf-submit');
+      var val = function (id) { return document.getElementById(id).value.trim(); };
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        statusEl.className = 'form-status';
+        var tokenEl = form.querySelector('[name="cf-turnstile-response"]');
+        var token = tokenEl ? tokenEl.value : '';
+        if (!token) {
+          statusEl.textContent = 'Please complete the challenge and try again.';
+          statusEl.classList.add('is-error');
+          return;
+        }
+        btn.disabled = true;
+        statusEl.textContent = 'Sending…';
+        fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: val('cf-name'), email: val('cf-email'),
+            subject: val('cf-subject'), message: val('cf-message'), token: token
+          })
+        }).then(function (r) {
+          return r.json().catch(function () { return { ok: r.ok }; });
+        }).then(function (data) {
+          if (data && data.ok) {
+            form.reset();
+            statusEl.textContent = 'Thanks — your message is on its way. I’ll reply by email.';
+            statusEl.classList.add('is-success');
+          } else {
+            statusEl.textContent = (data && data.error) || 'Something went wrong. Please try again.';
+            statusEl.classList.add('is-error');
+          }
+        }).catch(function () {
+          statusEl.textContent = 'Network error. Please try again.';
+          statusEl.classList.add('is-error');
+        }).finally(function () {
+          btn.disabled = false;
+          if (window.turnstile) { try { window.turnstile.reset(); } catch (e) {} }
+        });
+      });
+    })();
+  </script>
 </Layout>
